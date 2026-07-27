@@ -10,7 +10,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://digiability.org"),
+  metadataBase: new URL("https://digiability.in"),
   title: "DigiAbility — Connecting Abilities. Empowering Communities.",
   description:
     "DigiAbility Community connects Persons with Disabilities, caregivers, NGOs, and advocates through an accessible, inclusive mobile platform built for digital inclusion.",
@@ -28,7 +28,9 @@ export const metadata: Metadata = {
     images: ["/assets/images/app_logo.png"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/assets/images/logo.png",
+    shortcut: "/assets/images/logo.png",
+    apple: "/assets/images/logo.png",
   },
 };
 
