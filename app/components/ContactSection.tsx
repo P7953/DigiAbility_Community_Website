@@ -141,9 +141,8 @@ export function ContactSection() {
                                   setFormData({ ...formData, category: cat });
                                   setDropdownOpen(false);
                                 }}
-                                className={`w-full px-4 py-2.5 text-sm font-medium flex items-center justify-between transition-colors cursor-pointer text-left ${
-                                  isSelected ? "bg-primary text-white font-semibold" : "text-stone-800 hover:bg-primary/10 hover:text-primary"
-                                }`}
+                                className={`w-full px-4 py-2.5 text-sm font-medium flex items-center justify-between transition-colors cursor-pointer text-left ${isSelected ? "bg-primary text-white font-semibold" : "text-stone-800 hover:bg-primary/10 hover:text-primary"
+                                  }`}
                               >
                                 <span>{cat}</span>
                                 {isSelected && (
@@ -202,7 +201,7 @@ export function ContactSection() {
               </div>
               <div>
                 <h4 className="font-bold text-foreground text-base">Email Support</h4>
-                <p className="text-sm text-primary font-semibold mt-1">support@digiability.org</p>
+                <p className="text-sm text-primary font-semibold mt-1">navsaptrishiinnovations@gmail.com</p>
                 <p className="text-xs text-muted-foreground mt-0.5">Response within 24 hours</p>
               </div>
             </div>
@@ -214,8 +213,8 @@ export function ContactSection() {
                 </svg>
               </div>
               <div>
-                <h4 className="font-bold text-foreground text-base">Toll-Free Helpline</h4>
-                <p className="text-sm text-amber-600 font-semibold mt-1">1800-ACCESSIBLE (1800-222-377)</p>
+                <h4 className="font-bold text-foreground text-base">Contact No</h4>
+                <p className="text-sm text-amber-600 font-semibold mt-1">+91 9762184554</p>
                 <p className="text-xs text-muted-foreground mt-0.5">Mon–Sat, 9:00 AM – 6:00 PM IST</p>
               </div>
             </div>
@@ -227,9 +226,9 @@ export function ContactSection() {
                 </svg>
               </div>
               <div>
-                <h4 className="font-bold text-foreground text-base">National Office</h4>
+                <h4 className="font-bold text-foreground text-base">Office Address</h4>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Tech for Good Hub, National Inclusion Centre, New Delhi, India
+                  Office no. 105, Aspiro Building, In front of Thyssenkrupp Industries, Station Road, Dr. Babasaheb Ambedkar Square, Pimpri, Pune- 411017
                 </p>
               </div>
             </div>
