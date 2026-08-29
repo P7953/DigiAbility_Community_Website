@@ -42,6 +42,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakartaSans.variable} scroll-smooth`}>
       <body className="min-h-screen bg-background text-foreground antialiased selection:bg-fuchsia-100 selection:text-fuchsia-950">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-primary focus:text-white focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary font-bold text-sm"
+        >
+          Skip to main content
+        </a>
         <div
           className="noise-overlay fixed inset-0 z-50 pointer-events-none"
           aria-hidden="true"

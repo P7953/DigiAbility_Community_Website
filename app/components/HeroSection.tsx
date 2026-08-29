@@ -51,6 +51,7 @@ export function HeroSection() {
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   className="w-5 h-5 text-primary-foreground"
+                  aria-hidden="true"
                 >
                   <path d="M10.5 18.75a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z" />
                   <path
@@ -64,7 +65,7 @@ export function HeroSection() {
               <a
                 href="#features"
                 className="btn-secondary px-8 py-3.5 text-base font-bold inline-flex items-center gap-2.5"
-                aria-label="Learn about DigiAbility features"
+                aria-label="Explore Features of DigiAbility"
               >
                 Explore Features
                 <svg
@@ -74,6 +75,7 @@ export function HeroSection() {
                   strokeWidth={2}
                   stroke="currentColor"
                   className="w-4 h-4 text-primary"
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>
@@ -83,19 +85,19 @@ export function HeroSection() {
             {/* Stats row */}
             <div className="flex flex-wrap gap-8 pt-6 border-t border-border/80">
               <div className="flex flex-col gap-0.5">
-                <span className="text-3xl font-extrabold text-foreground tracking-tight">47K+</span>
+                <span className="text-3xl font-extrabold text-foreground tracking-tight">1200+</span>
                 <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                   Community Members
                 </span>
               </div>
               <div className="flex flex-col gap-0.5">
-                <span className="text-3xl font-extrabold text-foreground tracking-tight">120+</span>
+                <span className="text-3xl font-extrabold text-foreground tracking-tight">20+</span>
                 <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                   NGO Partners
                 </span>
               </div>
               <div className="flex flex-col gap-0.5">
-                <span className="text-3xl font-extrabold text-foreground tracking-tight">8</span>
+                <span className="text-3xl font-extrabold text-foreground tracking-tight">5</span>
                 <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                   Accessibility Modes
                 </span>
@@ -122,7 +124,7 @@ export function HeroSection() {
                     src="/assets/images/Phone.jpeg"
                     alt="DigiAbility Community Mobile App"
                     fill
-                    sizes="(max-width: 768px) 100vw, 320px"
+                    sizes="(max-width: 768px) 304px, 320px"
                     className="object-cover rounded-[2.1rem]"
                     priority
                   />

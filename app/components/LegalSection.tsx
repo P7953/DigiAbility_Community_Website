@@ -11,6 +11,26 @@ export function LegalSection() {
     { id: "wcag", label: "WCAG Compliance" },
   ] as const;
 
+  const handleTabKeyDown = (e: React.KeyboardEvent, index: number) => {
+    let nextIndex = -1;
+    if (e.key === "ArrowRight") {
+      nextIndex = (index + 1) % tabs.length;
+    } else if (e.key === "ArrowLeft") {
+      nextIndex = (index - 1 + tabs.length) % tabs.length;
+    } else if (e.key === "Home") {
+      nextIndex = 0;
+    } else if (e.key === "End") {
+      nextIndex = tabs.length - 1;
+    }
+
+    if (nextIndex !== -1) {
+      e.preventDefault();
+      const nextTab = tabs[nextIndex];
+      setActiveTab(nextTab.id);
+      document.getElementById(`tab-${nextTab.id}`)?.focus();
+    }
+  };
+
   return (
     <section id="legal" className="py-24 bg-stone-200 relative">
       <div className="container-page">
@@ -25,28 +45,47 @@ export function LegalSection() {
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex justify-center gap-3 mb-12 flex-wrap">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-200 cursor-pointer ${
-                activeTab === tab.id
-                  ? "bg-primary text-primary-foreground shadow-md scale-105"
-                  : "bg-card text-muted-foreground hover:text-foreground hover:bg-stone-100 border border-border/80"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+        <div
+          role="tablist"
+          aria-label="Legal, safety and compliance guidelines"
+          className="flex justify-center gap-3 mb-12 flex-wrap"
+        >
+          {tabs.map((tab, idx) => {
+            const isSelected = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                id={`tab-${tab.id}`}
+                role="tab"
+                aria-selected={isSelected}
+                aria-controls={`panel-${tab.id}`}
+                tabIndex={isSelected ? 0 : -1}
+                onClick={() => setActiveTab(tab.id)}
+                onKeyDown={(e) => handleTabKeyDown(e, idx)}
+                className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-primary ${
+                  isSelected
+                    ? "bg-primary text-primary-foreground shadow-md scale-105"
+                    : "bg-card text-stone-700 hover:text-foreground hover:bg-stone-100 border border-stone-300"
+                }`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
 
         {/* Tab Content Cards */}
         <div className="max-w-4xl mx-auto">
           {activeTab === "privacy" && (
-            <div className="bg-card rounded-2xl p-8 sm:p-10 border border-border/80 shadow-card flex flex-col gap-6 animate-in fade-in duration-300">
+            <div
+              id="panel-privacy"
+              role="tabpanel"
+              aria-labelledby="tab-privacy"
+              tabIndex={0}
+              className="bg-card rounded-2xl p-8 sm:p-10 border border-stone-300 shadow-card flex flex-col gap-6 animate-in fade-in duration-300 focus-visible:outline-2 focus-visible:outline-primary"
+            >
               <div className="flex items-center gap-3 text-primary">
-                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path fillRule="evenodd" d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z" clipRule="evenodd" />
                 </svg>
                 <h3 className="text-2xl font-extrabold text-foreground">Data Privacy & Security</h3>
@@ -75,9 +114,15 @@ export function LegalSection() {
           )}
 
           {activeTab === "conduct" && (
-            <div className="bg-card rounded-2xl p-8 sm:p-10 border border-border/80 shadow-card flex flex-col gap-6 animate-in fade-in duration-300">
-              <div className="flex items-center gap-3 text-amber-500">
-                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <div
+              id="panel-conduct"
+              role="tabpanel"
+              aria-labelledby="tab-conduct"
+              tabIndex={0}
+              className="bg-card rounded-2xl p-8 sm:p-10 border border-stone-300 shadow-card flex flex-col gap-6 animate-in fade-in duration-300 focus-visible:outline-2 focus-visible:outline-primary"
+            >
+              <div className="flex items-center gap-3 text-amber-600">
+                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clipRule="evenodd" />
                 </svg>
                 <h3 className="text-2xl font-extrabold text-foreground">Community Safety & Moderation</h3>
@@ -106,9 +151,15 @@ export function LegalSection() {
           )}
 
           {activeTab === "wcag" && (
-            <div className="bg-card rounded-2xl p-8 sm:p-10 border border-border/80 shadow-card flex flex-col gap-6 animate-in fade-in duration-300">
+            <div
+              id="panel-wcag"
+              role="tabpanel"
+              aria-labelledby="tab-wcag"
+              tabIndex={0}
+              className="bg-card rounded-2xl p-8 sm:p-10 border border-stone-300 shadow-card flex flex-col gap-6 animate-in fade-in duration-300 focus-visible:outline-2 focus-visible:outline-primary"
+            >
               <div className="flex items-center gap-3 text-primary">
-                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path fillRule="evenodd" d="M12 2.25A9.75 9.75 0 1021.75 12 9.76 9.76 0 0012 2.25zm.75 12.75a.75.75 0 01-1.5 0v-3.75a.75.75 0 011.5 0v3.75zm0-6a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" clipRule="evenodd" />
                 </svg>
                 <h3 className="text-2xl font-extrabold text-foreground">WCAG 2.1 AA Standards</h3>

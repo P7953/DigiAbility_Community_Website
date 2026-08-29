@@ -3,6 +3,7 @@ import { HeroSection } from "@/app/components/HeroSection";
 import { FeaturesSection } from "@/app/components/FeaturesSection";
 import { WhyDigiAbilitySection } from "@/app/components/WhyDigiAbilitySection";
 import { DownloadSection } from "@/app/components/DownloadSection";
+import { SocialMediaSection } from "@/app/components/SocialMediaSection";
 import { LegalSection } from "@/app/components/LegalSection";
 import { ContactSection } from "@/app/components/ContactSection";
 import { Footer } from "@/components/Footer";
@@ -15,6 +16,7 @@ export default function Home() {
         <HeroSection />
         <FeaturesSection />
         <WhyDigiAbilitySection />
+        <SocialMediaSection />
         <DownloadSection />
         <LegalSection />
         <ContactSection />

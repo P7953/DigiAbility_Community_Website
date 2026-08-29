@@ -9,17 +9,30 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [mobileMenuOpen]);
 
   const navItems = [
     { label: "Features", href: "#features" },
@@ -39,7 +52,7 @@ export function Header() {
           isScrolled ? "scale-[0.98] shadow-2xl border-white/80" : "shadow-lg"
         }`}
       >
-        <Link href="/" className="flex items-center gap-2.5 group" aria-label="DigiAbility Home">
+        <Link href="/" className="flex items-center gap-2.5 group rounded-lg focus-visible:ring-2 focus-visible:ring-primary" aria-label="DigiAbility Home">
           <AppLogo size={34} />
         </Link>
 
@@ -68,6 +81,7 @@ export function Header() {
               viewBox="0 0 24 24"
               fill="currentColor"
               className="w-4 h-4 text-primary-foreground"
+              aria-hidden="true"
             >
               <path
                 fillRule="evenodd"
@@ -82,7 +96,7 @@ export function Header() {
         {/* Mobile menu button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 rounded-full text-foreground hover:bg-white/40 transition-colors"
+          className="lg:hidden p-2 rounded-full text-foreground hover:bg-white/40 focus-visible:outline-2 focus-visible:outline-primary transition-colors cursor-pointer"
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-menu"
@@ -95,6 +109,7 @@ export function Header() {
               strokeWidth={1.5}
               stroke="currentColor"
               className="w-6 h-6"
+              aria-hidden="true"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
             </svg>
@@ -106,6 +121,7 @@ export function Header() {
               strokeWidth={1.5}
               stroke="currentColor"
               className="w-6 h-6"
+              aria-hidden="true"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
@@ -115,8 +131,9 @@ export function Header() {
 
       {/* Mobile menu dropdown */}
       {mobileMenuOpen && (
-        <div
+        <nav
           id="mobile-menu"
+          aria-label="Mobile navigation"
           className="lg:hidden absolute top-full left-4 right-4 mt-2 glass-lucid-header rounded-3xl p-6 flex flex-col gap-4 animate-in slide-in-from-top-2 duration-200 pointer-events-auto shadow-2xl"
         >
           {navItems.map((item) => (
@@ -139,6 +156,7 @@ export function Header() {
               viewBox="0 0 24 24"
               fill="currentColor"
               className="w-4 h-4 text-primary-foreground"
+              aria-hidden="true"
             >
               <path
                 fillRule="evenodd"
@@ -148,7 +166,7 @@ export function Header() {
             </svg>
             Download App
           </a>
-        </div>
+        </nav>
       )}
     </header>
   );

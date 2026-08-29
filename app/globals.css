@@ -3,19 +3,19 @@
 :root {
   --background: #F2F1EF;
   --foreground: #1C1917;
-  --primary: #ad67cb;
+  --primary: #8B2DB8;
   --primary-foreground: #FFFFFF;
   --secondary: #FDF4FF;
-  --secondary-foreground: #963e9b;
-  --accent: #F59E0B;
+  --secondary-foreground: #8B2DB8;
+  --accent: #D97706;
   --accent-foreground: #1C1917;
   --muted: #E8E7E5;
-  --muted-foreground: #696361;
+  --muted-foreground: #57534E;
   --card: #FFFFFF;
   --card-foreground: #1C1917;
-  --border: #E7E5E4;
-  --input: #E7E5E4;
-  --ring: #C026D3;
+  --border: #D6D3D1;
+  --input: #A8A29E;
+  --ring: #8B2DB8;
   --radius: 1rem;
   --font-sans: 'Plus Jakarta Sans', sans-serif;
 
@@ -29,10 +29,13 @@
   --amber-400: #FBBF24;
   --amber-500: #F59E0B;
   --amber-600: #D97706;
+  --amber-700: #B45309;
   --stone-100: #F5F5F4;
   --stone-200: #E7E5E4;
+  --stone-300: #D6D3D1;
   --stone-400: #A8A29E;
   --stone-500: #78716C;
+  --stone-600: #57534E;
   --stone-700: #44403C;
   --stone-900: #1C1917;
 }
@@ -154,8 +157,30 @@ body {
   transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.25s ease;
 }
 
+/* Offscreen rendering optimization to eliminate main-thread long tasks */
+#features,
+#why,
+#social,
+#download,
+#legal,
+#contact {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 650px;
+}
+
+:focus-visible {
+  outline: 2.5px solid var(--primary);
+  outline-offset: 2px;
+}
+
 .nav-link-underline {
   position: relative;
+}
+
+.nav-link-underline:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .nav-link-underline::after {
@@ -175,17 +200,17 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #b858d5, #af44e9);
+  background: linear-gradient(135deg, #8B2DB8, #701A75);
   color: #FFFFFF;
   font-weight: 700;
   border-radius: 9999px;
   transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s ease, opacity 0.2s ease;
-  box-shadow: 0 4px 16px rgba(165, 98, 173, 0.965);
+  box-shadow: 0 4px 16px rgba(139, 45, 184, 0.35);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 24px rgba(192, 38, 211, 0.48);
+  box-shadow: 0 8px 24px rgba(139, 45, 184, 0.45);
 }
 
 .btn-secondary {
@@ -235,10 +260,21 @@ body {
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .animate-float-delayed {
   animation: float 6s ease-in-out 2s infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-delayed {
+    animation: none;
+  }
 }
 
 .feature-icon-wrap {

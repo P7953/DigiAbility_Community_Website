@@ -7,35 +7,38 @@ export function WhyDigiAbilitySection() {
       title: "Digital Inclusion",
       desc: "Breaking down digital barriers by creating fully accessible interfaces compliant with WCAG 2.1 AA guidelines.",
       image: "/assets/images/community_1.png",
+      alt: "Accessible digital interface showcasing digital inclusion tools",
     },
     {
       title: "Peer Support Network",
       desc: "Connecting Persons with Disabilities and caregivers across cities to share experiences, guidance, and support.",
       image: "/assets/images/community_2.png",
+      alt: "Diverse community members and caregivers collaborating together",
     },
     {
       title: "Safe & Inclusive Space",
       desc: "Zero tolerance for harassment, full data confidentiality, and active community moderation by trained advocates.",
       image: "/assets/images/community_4.png",
+      alt: "Safe, moderated environment for inclusive community discussions",
     },
   ];
 
-  const testimonials = [
-    {
-      quote:
-        "DigiAbility transformed how I access disability schemes. Finding verified government benefits used to take months of bureaucracy—now it takes minutes.",
-      author: "Rajesh K.",
-      role: "Wheelchair User & Disability Advocate",
-      avatar: "R",
-    },
-    {
-      quote:
-        "As a caregiver for my autistic son, finding an empathetic community and expert advice in one accessible app has been truly life-changing.",
-      author: "Meera S.",
-      role: "Caregiver & Community Leader",
-      avatar: "M",
-    },
-  ];
+  // const testimonials = [
+  //   {
+  //     quote:
+  //       "DigiAbility transformed how I access disability schemes. Finding verified government benefits used to take months of bureaucracy—now it takes minutes.",
+  //     author: "Rajesh K.",
+  //     role: "Wheelchair User & Disability Advocate",
+  //     avatar: "R",
+  //   },
+  //   {
+  //     quote:
+  //       "As a caregiver for my autistic son, finding an empathetic community and expert advice in one accessible app has been truly life-changing.",
+  //     author: "Meera S.",
+  //     role: "Caregiver & Community Leader",
+  //     avatar: "M",
+  //   },
+  // ];
 
   return (
     <section id="why" className="py-24 bg-stone-200 relative">
@@ -60,7 +63,7 @@ export function WhyDigiAbilitySection() {
               <div className="relative h-48 w-full overflow-hidden bg-stone-100">
                 <Image
                   src={item.image}
-                  alt={item.title}
+                  alt={item.alt}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -79,7 +82,7 @@ export function WhyDigiAbilitySection() {
         </div>
 
         {/* Testimonials section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {testimonials.map((t, i) => (
             <div
               key={i}
@@ -99,7 +102,7 @@ export function WhyDigiAbilitySection() {
               </div>
             </div>
           ))}
-        </div>
+        // </div> */}
       </div>
     </section>
   );
