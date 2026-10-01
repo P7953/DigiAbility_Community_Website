@@ -1,0 +1,20 @@
+# Cloudflare Pages response headers (applied to every static response).
+# Mirrors the headers() block in next.config.ts — keep the two in step.
+#
+# CSP is REPORT-ONLY for now: violations show in the browser console without
+# breaking anything. Once a week of real traffic shows none, rename
+# "Content-Security-Policy-Report-Only" to "Content-Security-Policy" here and
+# in next.config.ts. 'unsafe-inline' in script-src is required: this site is
+# served statically, and Next.js's inline bootstrap scripts can't get a
+# per-request nonce without server rendering.
+# When enforcing, also append "; upgrade-insecure-requests" (browsers ignore it
+# in report-only mode).
+
+/*
+  ! Access-Control-Allow-Origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
